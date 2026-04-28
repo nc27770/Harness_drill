@@ -211,6 +211,64 @@ This is not a complication of LIMBIC per se — it's a complication of
 
 ---
 
+## 3.6 The perception / intellect / expression triad
+
+After Modules 1d–1g instrumented the input *and* output modality axes, a
+sharper routing model emerged. The 5-faculty taxonomy from
+`docs/benchmark-lens.md` is the right lens for *grading* benchmarks (it
+distinguishes deductive from abductive output cleanly). For *routing*, a
+3-faculty triad is more usable:
+
+| Faculty | Pipeline location | What its tier choice is reacting to |
+|---|---|---|
+| **Perception** | parser stage | input hardness — modality, noise, ambiguity, length |
+| **Intellect** | wherever the reasoning happens | reasoning depth required to produce the right answer |
+| **Expression** | composer stage | output modality + prose/voice quality required |
+
+This triad lets LIMBIC make three orthogonal Goldilocks decisions per
+call, each consulting per-faculty empirical data:
+
+- *Perception fast/deep?* — driven by input hardness on this call.
+- *Intellect fast/deep?* — driven by reasoning depth required.
+- *Expression fast/deep?* — driven by output modality and prose
+  expectations.
+
+Cross-faculty interactions matter (e.g., a model that thinks heavily by
+default makes fast-Expression artificially expensive), but the triad is
+the right axis-set to negotiate them.
+
+## 3.7 "Decline to modulate" must be a first-class routing outcome
+
+A surprising recurring pattern across Modules 1c–1g: **bilateral routing
+loses on a meaningful fraction of inputs**. The two clearest categories:
+
+1. **Trivial prompts** — single-call baseline produces the right answer
+   in fewer tokens with lower latency. The parser stage is pure overhead.
+2. **Cheap baselines that no bilateral can beat on cost** — e.g.,
+   `gpt-4o-mini` baseline at $0.000049 (Module 1d), where any 2-call
+   bilateral is structurally 10–60× more expensive on input alone.
+
+The wrong response is to call this "LIMBIC's failure mode." The right
+response is to make **"dispatch single-call baseline"** a first-class
+routing outcome equal in standing to bilateral. LIMBIC's *first*
+decision is whether to modulate at all.
+
+Implications for the staged build path (§5):
+
+- **Module 4 evals must include the no-modulation path explicitly.** If
+  baselines and bilaterals are both candidate routes, the eval must
+  measure both and let the data choose.
+- **The router's policy must include "no-op" routes.** A learned
+  dispatcher whose only verbs are "bilateral A→B" cannot represent
+  "skip the parser entirely."
+- **The cost telemetry must be unified across both modes.** A 1-call
+  baseline and a 2-call bilateral need the same accounting shape so
+  their costs are directly comparable.
+
+This reframes LIMBIC's value from *"smart bilateral routing"* to
+*"smart routing, where bilateral is one of several choices and
+sometimes the right choice is no choice at all."*
+
 ## 4. The Two-Axis Reduction (for the Module 1b prototype)
 
 The full LIMBIC design has four routing axes (direction, faculty, modality,

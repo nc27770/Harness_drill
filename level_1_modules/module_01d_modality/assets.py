@@ -36,6 +36,13 @@ _EXT_MEDIA_TYPES: dict[str, str] = {
     "m4a":  "audio/mp4",
     "ogg":  "audio/ogg",
     "flac": "audio/flac",
+    # video (module 1f)
+    "mp4":  "video/mp4",
+    "mov":  "video/quicktime",
+    "webm": "video/webm",
+    "mkv":  "video/x-matroska",
+    "mpeg": "video/mpeg",
+    "avi":  "video/x-msvideo",
 }
 
 
