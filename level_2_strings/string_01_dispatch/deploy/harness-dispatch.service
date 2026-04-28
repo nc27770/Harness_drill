@@ -1,0 +1,19 @@
+[Unit]
+Description=Harness Drill — Dispatch (string_01) Gradio + FastAPI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/projects/Harness_drill/level_2_strings/string_01_dispatch
+EnvironmentFile=/home/ec2-user/projects/Harness_drill/.env
+ExecStart=/home/ec2-user/projects/Harness_drill/.venv/bin/python server.py --host 127.0.0.1 --port 7860
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
