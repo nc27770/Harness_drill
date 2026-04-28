@@ -44,5 +44,13 @@ python level_1_modules/module_01_bare_call/bare_call.py "your question"
 | # | Module | Concept |
 |---|---|---|
 | 1 | [`module_01_bare_call`](level_1_modules/module_01_bare_call/) | The single model invocation. Stateless. No tools. |
+| 1b | [`module_01b_bilateral`](level_1_modules/module_01b_bilateral/) | Split read from act — separate parser and composer models, two tiers each (Anthropic only). Prototype for the bilateral piece of LIMBIC. |
+| 1c | [`module_01c_bilateral_x`](level_1_modules/module_01c_bilateral_x/) | Bilateral across three providers (Anthropic, OpenAI, Google). Adapter layer makes provider differences visible — the API-drift tax LIMBIC will amortize. |
 
 Subsequent modules are built on demand, in order.
+
+## Design notes
+
+| Doc | Purpose |
+|---|---|
+| [`docs/limbic-design.md`](docs/limbic-design.md) | Future-project sketch — multi-axis dynamic router (direction × faculty × modality × cost). Module 1b is the prototype of its bilateral axis. |

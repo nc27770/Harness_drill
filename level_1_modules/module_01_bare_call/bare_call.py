@@ -14,6 +14,7 @@ Read top to bottom. Every comment ties code to a concept from the curriculum.
 
 from __future__ import annotations
 
+import json
 import os
 import sys
 import time
@@ -130,7 +131,23 @@ def call_model(
         # put a token under changes how it lands.
         request["system"] = system
 
+    # ── The "alchemy window" ──────────────────────────────────────────────────
+    # Set BARE_CALL_TRACE=1 to dump the EXACT request dict (the JSON shipped
+    # over the wire) and the RAW response object (everything, not just .text).
+    # This is the entire interface to the model: what you put in, what comes
+    # out. Inside the box is opaque — but the boundary is fully knowable, and
+    # every later module only changes what we put into this dict.
+    trace = os.environ.get("BARE_CALL_TRACE")
+    if trace:
+        print("\n--- REQUEST (what we ship to the API) ---", file=sys.stderr)
+        print(json.dumps(request, indent=2), file=sys.stderr)
+
     response = client.messages.create(**request)
+
+    if trace:
+        print("\n--- RESPONSE (raw, before we extract .text) ---", file=sys.stderr)
+        print(response.model_dump_json(indent=2), file=sys.stderr)
+        print("--- end trace ---\n", file=sys.stderr)
 
     elapsed = time.perf_counter() - started_at
 

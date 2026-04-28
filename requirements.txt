@@ -1,2 +1,4 @@
 anthropic
 python-dotenv
+openai               # module 1c — cross-provider bilateral
+google-generativeai  # module 1c — cross-provider bilateral
