@@ -46,6 +46,7 @@ python level_1_modules/module_01_bare_call/bare_call.py "your question"
 | 1 | [`module_01_bare_call`](level_1_modules/module_01_bare_call/) | The single model invocation. Stateless. No tools. |
 | 1b | [`module_01b_bilateral`](level_1_modules/module_01b_bilateral/) | Split read from act — separate parser and composer models, two tiers each (Anthropic only). Prototype for the bilateral piece of LIMBIC. |
 | 1c | [`module_01c_bilateral_x`](level_1_modules/module_01c_bilateral_x/) | Bilateral across three providers (Anthropic, OpenAI, Google). Adapter layer makes provider differences visible — the API-drift tax LIMBIC will amortize. |
+| 1d | [`module_01d_modality`](level_1_modules/module_01d_modality/) | Bilateral with image input. Parser sees the image once, composer reads only the text IR. S3-backed asset fetch via `assets.py`. |
 
 Subsequent modules are built on demand, in order.
 
