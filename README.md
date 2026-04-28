@@ -51,6 +51,8 @@ python level_1_modules/module_01_bare_call/bare_call.py "your question"
 | 1f | [`module_01f_video`](level_1_modules/module_01f_video/) | Bilateral with video input. Single-provider parser (Gemini-only); composer is unconstrained. Modality forces parser; bilateral keeps composer free. |
 | 1g | [`module_01g_audio_out`](level_1_modules/module_01g_audio_out/) | Bilateral with audio **output**. Composer must be OpenAI; capability matrix splits into input/output halves. Audio bytes uploaded to `s3://harness-eng/outputs/`. |
 | 1h | [`module_01h_modality_matrix`](level_1_modules/module_01h_modality_matrix/) | Closes the modality matrix — any input modality (text/image/audio/video) × either output (text/audio). Dynamic `--all` generates valid configs per cell. |
+| 1i | [`module_01i_image_out`](level_1_modules/module_01i_image_out/) | Bilateral with image **output**. Composer is a diffusion-transformer (gpt-image-1, gemini-2.5-flash-image); Anthropic excluded. IR becomes modality-shaped (subject, composition, style, lighting, aspect, negatives, safety). Cost arithmetic inverts — parser is a rounding error against per-image cost. |
+| 1j | [`module_01j_video_out`](level_1_modules/module_01j_video_out/) | Bilateral with video **output**, **async**. Composer is Sora or Veo (submit/poll/fetch); Anthropic excluded. Refusal is a typed terminal state (`completed` / `failed` / `rejected`). Cost moves from cents to dollars per clip. Closes the input × output matrix at 16 cells. |
 
 Subsequent modules are built on demand, in order.
 
@@ -122,19 +124,40 @@ Discrete dispatchable configurations across the bilateral × tier ×
 modality space:
 
 ```
-8 modality cells (4 input × 2 output) × full bilateral expansion
-                                       (capability-filtered)
-                                     = 168 configurations total
+                       OUTPUT
+              text   audio   image   video
+            ┌────────────────────────────────┐
+text        │  ✅    ✅      ✅      ✅      │
+INPUT image │  ✅    ✅      ✅      ✅      │
+      audio │  ✅    ✅      ✅      ✅      │
+      video │  ✅    ✅      ✅      ✅      │
+            └────────────────────────────────┘
 
-Modules 1 → 1g have routed 47 of 168 across 5 of 8 cells.
-Module 1h closes the remaining 3 cells (any-input → audio-out).
+16 modality cells (4 input × 4 output) × full bilateral expansion
+                                        (capability-filtered)
+
+Modules 1 → 1h closed the text and audio output halves (8 cells).
+Module 1i closes (text → image).
+Module 1j closes (text → video) and proves the async-job primitive.
+
+Image-edit (image → image) and image-to-video (image → video) are
+deliberate deferrals — different endpoint families, no new routing
+lesson.
 ```
 
-See `docs/limbic-design.md` for the full LIMBIC sketch and how this
-coverage feeds into the staged build path.
+After 1j the modality plane is solved. The remaining LIMBIC work is on
+axes orthogonal to modality: faculty-tagged evals (Module 4), telemetry
+(Module 5), rule-based router (L2.1), LIMBIC v0 (L3.1).
+
+See `docs/limbic-design.md` for the full LIMBIC sketch and
+`docs/limbic-image-video-generative.md` for the design grounding behind
+1i and 1j (why image and video are *not* the same machine as text on
+the other side of the wire).
 
 ## Design notes
 
 | Doc | Purpose |
 |---|---|
 | [`docs/limbic-design.md`](docs/limbic-design.md) | Future-project sketch — multi-axis dynamic router (direction × faculty × modality × cost). Module 1b is the prototype of its bilateral axis. |
+| [`docs/measurement-seam.md`](docs/measurement-seam.md) | Philosophical lens — frozen-weight LLM inference as a quantum-mechanical measurement act. The structural fact that makes the harness/researcher/inference role split inevitable. |
+| [`docs/limbic-image-video-generative.md`](docs/limbic-image-video-generative.md) | Design grounding for 1i and 1j — why generative image/video output is a different operator family, why control flow goes async, and why cost units shift from micro-cents to dollars per clip. |
