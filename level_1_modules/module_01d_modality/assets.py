@@ -24,11 +24,18 @@ CACHE_ROOT = Path.home() / ".cache" / "harness-drill"
 # Map common image extensions to their media types. Used as a fallback when
 # the source doesn't surface a Content-Type (e.g., local file paths).
 _EXT_MEDIA_TYPES: dict[str, str] = {
-    "png": "image/png",
-    "jpg": "image/jpeg",
+    # images (module 1d)
+    "png":  "image/png",
+    "jpg":  "image/jpeg",
     "jpeg": "image/jpeg",
     "webp": "image/webp",
-    "gif": "image/gif",
+    "gif":  "image/gif",
+    # audio (module 1e)
+    "mp3":  "audio/mpeg",
+    "wav":  "audio/wav",
+    "m4a":  "audio/mp4",
+    "ogg":  "audio/ogg",
+    "flac": "audio/flac",
 }
 
 
