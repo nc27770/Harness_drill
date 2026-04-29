@@ -271,6 +271,14 @@ three. Bilateral combinatorics shrink on the composer side and stay rich
 on the parser side — *the asymmetry the LIMBIC design predicted is now
 forced by capability*.
 
+Closing the asset-conditioned cells (`image|audio|video → image`,
+`image|audio|video → video`) is Modules 1k/1l's job. They reuse 1i and
+1j's slot tables but split internally into two paths: edit/condition
+when the input is image (assets feed the composer's edit or
+conditioning endpoint directly), translate when the input is audio or
+video (parser observes the asset and emits a normal text-only brief
+the composer renders from). Same matrix, two operators per cell.
+
 ### 4.2 Cost telemetry needs a new unit story
 
 Text cost is micro-cents. Image cost is single-cents to tens-of-cents per
@@ -501,29 +509,35 @@ That is the curriculum-level claim, and it is testable.
 
 ---
 
-## 8. The post-1j coverage map
+## 8. The post-1l coverage map
 
-After 1j, the matrix is closed:
+After 1j the **text-input column** is closed; 1k closes the
+asset-input cells of the image-out column, and 1l closes the
+asset-input cells of the video-out column. The fully closed matrix
+after 1l, with module ownership:
 
 ```
                        OUTPUT
               text   audio   image   video
             ┌────────────────────────────────┐
-text        │  ✅    ✅      ✅      ✅      │
-INPUT image │  ✅    ✅      ✅      ✅      │
-      audio │  ✅    ✅      ✅      ✅      │
-      video │  ✅    ✅      ✅      ✅      │
+text        │  1c    1h      1i      1j      │
+INPUT image │  1h    1h      1k      1l      │
+      audio │  1h    1h      1k      1l      │
+      video │  1h    1h      1k      1l      │
             └────────────────────────────────┘
-              16 cells, capability-filtered
+              16 cells, capability-filtered, no deferrals
               parser slot (input side):  Anthropic / OpenAI / Google
+                                         (capability-gated per modality)
               composer slot (output side):
                 text    : Anthropic / OpenAI / Google
                 audio   : OpenAI (per Module 1g matrix)
-                image   : OpenAI / Google
-                video   : OpenAI / Google
+                image   : OpenAI / Google (1i text-in; 1k asset-in,
+                          edit on image-in, generate on audio/video-in)
+                video   : OpenAI / Google (1j text-in; 1l asset-in,
+                          condition on image-in, generate on audio/video-in)
 ```
 
-After 1j the curriculum has demonstrated:
+After 1l the curriculum has demonstrated:
 
 - **Any input modality** can feed a parser stage.
 - **Any output modality** can be served by a capability-filtered
@@ -545,7 +559,7 @@ level — not a single mega-model serving every modality, but a harness
 that knows what each lab can do, routes accordingly, and presents a
 uniform interface to the application built on top. It is the answer to
 the question "if you do not own a foundation model, how far can you go?"
-The answer this curriculum gives, ending at 1j: *all the way to a
+The answer this curriculum gives, ending at 1l: *all the way to a
 modality-complete, multi-lab harness that a CapCut-lite could be built
 on top of.*
 

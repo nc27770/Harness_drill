@@ -52,7 +52,9 @@ python level_1_modules/module_01_bare_call/bare_call.py "your question"
 | 1g | [`module_01g_audio_out`](level_1_modules/module_01g_audio_out/) | Bilateral with audio **output**. Composer must be OpenAI; capability matrix splits into input/output halves. Audio bytes uploaded to `s3://harness-eng/outputs/`. |
 | 1h | [`module_01h_modality_matrix`](level_1_modules/module_01h_modality_matrix/) | Closes the modality matrix — any input modality (text/image/audio/video) × either output (text/audio). Dynamic `--all` generates valid configs per cell. |
 | 1i | [`module_01i_image_out`](level_1_modules/module_01i_image_out/) | Bilateral with image **output**. Composer is a diffusion-transformer (gpt-image-1, gemini-2.5-flash-image); Anthropic excluded. IR becomes modality-shaped (subject, composition, style, lighting, aspect, negatives, safety). Cost arithmetic inverts — parser is a rounding error against per-image cost. |
-| 1j | [`module_01j_video_out`](level_1_modules/module_01j_video_out/) | Bilateral with video **output**, **async**. Composer is Sora or Veo (submit/poll/fetch); Anthropic excluded. Refusal is a typed terminal state (`completed` / `failed` / `rejected`). Cost moves from cents to dollars per clip. Closes the input × output matrix at 16 cells. |
+| 1j | [`module_01j_video_out`](level_1_modules/module_01j_video_out/) | Bilateral with video **output**, **async**. Composer is Sora or Veo (submit/poll/fetch); Anthropic excluded. Refusal is a typed terminal state (`completed` / `failed` / `rejected`). Cost moves from cents to dollars per clip. |
+| 1k | [`module_01k_image_edit`](level_1_modules/module_01k_image_edit/) | Asset-conditioned image **output**. Closes `(image, image)` (true edit via `images.edit` / Gemini in-context edit) plus `(audio, image)` and `(video, image)` (parser translates asset to image brief). Two-path dispatch — edit when you can, translate when you must. |
+| 1l | [`module_01l_video_edit`](level_1_modules/module_01l_video_edit/) | Asset-conditioned video **output**. Closes `(image, video)` (image conditioning via Sora `input_reference` / Veo `image=`) plus `(audio, video)` and `(video, video)` (parser translates asset to video brief). Reuses 1j's async state machine. Closes the matrix at all 16 cells with no deferrals. |
 
 Subsequent modules are built on demand, in order.
 
@@ -139,13 +141,15 @@ INPUT image │  ✅    ✅      ✅      ✅      │
 Modules 1 → 1h closed the text and audio output halves (8 cells).
 Module 1i closes (text → image).
 Module 1j closes (text → video) and proves the async-job primitive.
+Module 1k closes (image|audio|video → image) — edit when you can,
+  translate when you must.
+Module 1l closes (image|audio|video → video) — image conditioning on
+  Sora/Veo, parser-translate for non-image asset inputs.
 
-Image-edit (image → image) and image-to-video (image → video) are
-deliberate deferrals — different endpoint families, no new routing
-lesson.
+All 16 cells are now covered with no deferrals.
 ```
 
-After 1j the modality plane is solved. The remaining LIMBIC work is on
+After 1l the modality plane is solved. The remaining LIMBIC work is on
 axes orthogonal to modality: faculty-tagged evals (Module 4), telemetry
 (Module 5), rule-based router (L2.1), LIMBIC v0 (L3.1).
 

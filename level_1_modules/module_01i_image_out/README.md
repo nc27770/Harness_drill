@@ -8,12 +8,14 @@ the same API. See [`docs/limbic-image-video-generative.md`](../../docs/limbic-im
 §1.1 for why that distinction is structural, not cosmetic.
 
 ```
-( text,  image )   "draw me X"
-( image, image )   "remix this image" — deferred (image-edit endpoint)
+( text,  image )   "draw me X"          ← 1i closes this
+( image, image )   "remix this image"   ← Module 1k (asset-conditioned)
 ```
 
-1i closes the `(text, image)` cell. Image-edit (image-in → image-out)
-uses a different endpoint family and is intentionally deferred.
+1i closes the `(text, image)` cell. Asset-conditioned image-out
+(`image|audio|video → image`) is its sibling — see Module 1k, which
+mixes a true edit endpoint (Path A) with parser-translates-asset
+(Path B).
 
 ## What's new vs Module 1h
 
@@ -131,10 +133,10 @@ parameter on every version).
 
 ## Limitations (deliberate, deferred)
 
-- **Image-edit (image-in → image-out)** is not supported. It would use
-  OpenAI's `images.edit` endpoint and Gemini's image-edit mode, which
-  are different API shapes. Deferred to keep 1i focused on the
-  text→image cell.
+- **Image-edit (image-in → image-out)** lives in Module 1k. It uses
+  OpenAI's `images.edit` endpoint and Gemini's in-context image-edit
+  mode, both with a different control flow than `images.generate` —
+  which is why they earn their own module rather than a flag here.
 - **Style references / IP guards / multi-image grids** are out of
   scope. They're product-surface features, not harness primitives.
 - **Aspect ratio on Gemini is a prompt hint, not a hard parameter.**
@@ -145,7 +147,9 @@ parameter on every version).
 Module 1j layers async control flow on top of this same shape. The IR
 gains two fields (camera motion, duration); the composer becomes
 submit-then-poll instead of sync; refusal becomes a typed outcome.
-After 1j, the input × output modality matrix is closed at 16 cells and
-the curriculum's modality plane is solved. The cognitive plane —
+Module 1k generalizes 1i to asset-conditioned image-out — image-edit
+(Path A) plus audio/video → image translation (Path B). After 1k and
+1l, the input × output modality matrix is closed at 16 cells and the
+curriculum's modality plane is solved. The cognitive plane —
 faculty-tagged evals (Module 4), telemetry (Module 5), and LIMBIC v0
 (Module L3.1) — is the next frontier.

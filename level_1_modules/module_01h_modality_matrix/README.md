@@ -1,8 +1,9 @@
 # Module 1h — Closing the Modality Matrix
 
-**Goal:** complete the input/output modality coverage in a single
-consolidated module. Modules 1d–1g instrumented 5 of 8 cells; 1h closes
-the remaining 3:
+**Goal:** complete the input/output modality coverage **for text and
+audio outputs** in a single consolidated module. Modules 1d–1g
+instrumented 5 of 8 text/audio-output cells; 1h closes the remaining
+3:
 
 ```
 ( image, audio )   "look at this and tell me out loud"
@@ -10,9 +11,10 @@ the remaining 3:
 ( video, audio )   "narrate this video"
 ```
 
-After 1h, every reachable `(input modality, output modality)` cell is
-routable through the same CLI. The harness now spans the full modality
-plane described in the README's Coverage Map.
+After 1h, every (input modality, text|audio output) cell is routable
+through the same CLI. Image-out and video-out close in 1i, 1j, 1k,
+1l — different operator families on the composer side, different
+modules.
 
 ## What's new vs Module 1g
 
@@ -108,9 +110,12 @@ configurations of cell `(video, audio)` automatically; a run with
 
 ## What this completes
 
-After 1h, the modality matrix half of the LIMBIC routing space is
-fully instrumented. The remaining work toward LIMBIC v0 is on the
-**axes orthogonal to modality**:
+After 1h, the **text and audio output halves** of the modality matrix
+are fully instrumented (8 of 16 cells). The image and video output
+halves close in 1i (text→image), 1j (text→video), 1k
+(image|audio|video→image), and 1l (image|audio|video→video). The
+remaining work toward LIMBIC v0 is then on the **axes orthogonal to
+modality**:
 
 - **Module 4 — faculty-tagged evals.** Replace anecdotes with measured
   performance per (perception, intellect, expression) faculty.
@@ -123,5 +128,5 @@ fully instrumented. The remaining work toward LIMBIC v0 is on the
   bilateral router on top of the rule-based foundation, learning
   per-cell Goldilocks zones from Module-4/5 data.
 
-The modality plane is solved. The cognitive plane is the next
-frontier.
+After 1l the modality plane is solved. The cognitive plane is the
+next frontier.

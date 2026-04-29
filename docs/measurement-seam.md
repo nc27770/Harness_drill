@@ -189,7 +189,11 @@ literacy**:
 | [01e_audio](../level_1_modules/module_01e_audio/) | Audio input — first place modality *forces* the parser choice (capability matrix). |
 | [01f_video](../level_1_modules/module_01f_video/) | Video input — single-provider parser (Gemini), free composer. |
 | [01g_audio_out](../level_1_modules/module_01g_audio_out/) | Audio output — composer slot constrained for the first time. The output side of the seam now has its own capability matrix. |
-| [01h_modality_matrix](../level_1_modules/module_01h_modality_matrix/) | Closes the input × output modality matrix. The full seam, swept. |
+| [01h_modality_matrix](../level_1_modules/module_01h_modality_matrix/) | Closes the text and audio output halves of the modality matrix. The full seam, swept on those eight cells. |
+| [01i_image_out](../level_1_modules/module_01i_image_out/) | Image output — composer is a diffusion-transformer, not a chat model. The IR is now modality-shaped (output side dictates schema). Cost arithmetic inverts. |
+| [01j_video_out](../level_1_modules/module_01j_video_out/) | Video output — async control flow first becomes a harness primitive (submit / poll / terminal). Refusal is a typed outcome. Cost moves to dollars per clip. |
+| [01k_image_edit](../level_1_modules/module_01k_image_edit/) | Asset-conditioned image output. Edit-vs-translate dispatch — same seam, two operators chosen by input modality. |
+| [01l_video_edit](../level_1_modules/module_01l_video_edit/) | Asset-conditioned video output. Reuses 1j's async state machine; first place asset-input meets async generation. Closes the matrix. |
 
 Every later module — memory (Module 2), tool use (Module 3), evals
 (Module 4), telemetry, LIMBIC itself — adds machinery on the harness side

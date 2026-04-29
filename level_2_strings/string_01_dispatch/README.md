@@ -32,8 +32,9 @@ slightly fragile stderr-regex extraction (easily replaced by a
 
 ## Dispatch table
 
-Five module files cover all 16 modality cells (1h consolidates 1d–1g
-for the input × text/audio output cells):
+Seven module files cover all 16 modality cells. 1h consolidates 1d–1g
+for the input × text/audio output cells; 1k/1l close the asset-
+conditioned image/video diagonals:
 
 | Output | Input | Module |
 |---|---|---|
@@ -41,11 +42,14 @@ for the input × text/audio output cells):
 | text | image / audio / video | `1h` (`bilateral_h.py`) |
 | audio | any | `1h` (`bilateral_h.py`) |
 | image | text | `1i` (`bilateral_i.py`) |
+| image | image / audio / video | `1k` (`bilateral_k.py`) |
 | video | text | `1j` (`bilateral_j.py`) |
+| video | image / audio / video | `1l` (`bilateral_l.py`) |
 
-`(image, image)` (image-edit) and `(image, video)` (image-to-video)
-are deliberate deferrals — different endpoint families, no new
-routing lesson.
+All 16 cells of the (input × output) modality matrix are covered. 1k
+holds two internal paths (edit vs translate); 1l holds two (condition
+vs translate). The dispatcher only sees cell coordinates — the path
+choice is internal to each module.
 
 ## Running locally
 
@@ -102,7 +106,7 @@ fetch directly.
 ```
 [ user / API client ]
         │
-        ▼  https://ec2-3-238-113-61.compute-1.amazonaws.com/
+        ▼  https://ec2-44-210-82-161.compute-1.amazonaws.com/
     ┌────────────────────┐
     │ nginx (port 443)   │  TLS termination (self-signed cert),
     │                    │  reverse proxy, WS upgrade
@@ -117,7 +121,8 @@ fetch directly.
              ▼
     ┌────────────────────┐
     │ level_1_modules/   │  bilateral_x / bilateral_h /
-    │ <module>.py        │  bilateral_i / bilateral_j
+    │ <module>.py        │  bilateral_i / bilateral_j /
+    │                    │  bilateral_k / bilateral_l
     └────────────────────┘
 ```
 

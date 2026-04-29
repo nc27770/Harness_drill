@@ -67,7 +67,9 @@ INPUT_MODALITIES  = ("text", "image", "audio", "video")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Dispatch table — (input, output) → (module file, CLI builder).
-# Five module files cover the matrix; 1h consolidates 1d/1e/1f/1g.
+# Seven module files cover all 16 cells; 1h consolidates 1d/1e/1f/1g
+# for text/audio output, 1k/1l close the asset-conditioned image/video
+# diagonals.
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -137,8 +139,34 @@ def plan_dispatch(*,
                 prompt]
         return DispatchPlan(path, argv, "1j (text,video)")
 
-    raise ValueError(f"no module covers ({input_modality}, {output_modality}); "
-                     f"image-edit and image-to-video are deferred deferrals")
+    # (image|audio|video, image) → 1k bilateral_k.py — asset-conditioned
+    # image-out. Edit when input is image, parser-translates otherwise.
+    if output_modality == "image" and input_modality in ("image", "audio", "video"):
+        path = _module("module_01k_image_edit/bilateral_k.py")
+        argv = [PYTHON_BIN, path,
+                "--parser", parser_slot, "--composer", composer_slot,
+                "--quality", image_quality]
+        if asset_uri:
+            argv += ["--asset", asset_uri]
+        argv += [prompt]
+        return DispatchPlan(path, argv, f"1k ({input_modality},image)")
+
+    # (image|audio|video, video) → 1l bilateral_l.py — asset-conditioned
+    # video-out. Image-conditioning when input is image, parser-translates
+    # otherwise. Reuses 1j's async state machine.
+    if output_modality == "video" and input_modality in ("image", "audio", "video"):
+        path = _module("module_01l_video_edit/bilateral_l.py")
+        argv = [PYTHON_BIN, path,
+                "--parser", parser_slot, "--composer", composer_slot,
+                "--duration", str(video_duration),
+                "--size", video_size,
+                "--aspect-ratio", video_aspect]
+        if asset_uri:
+            argv += ["--asset", asset_uri]
+        argv += [prompt]
+        return DispatchPlan(path, argv, f"1l ({input_modality},video)")
+
+    raise ValueError(f"unhandled cell ({input_modality}, {output_modality})")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

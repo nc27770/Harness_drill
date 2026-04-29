@@ -2,16 +2,20 @@
 
 **Goal:** prove the bilateral split holds under **async** generation,
 introduce the async-job state machine as a first-class harness primitive,
-and close the input × output modality matrix at 16 cells. See
+and close the `(text, video)` cell. See
 [`docs/limbic-image-video-generative.md`](../../docs/limbic-image-video-generative.md)
 §1.3, §4.3, and §6 for the design grounding.
 
 ```
-( text, video )   "make me a 4-second clip of X"
+( text,  video )   "make me a 4-second clip of X"     ← 1j closes this
+( image, video )   image-conditioned async submit     ← Module 1l
 ```
 
-After 1j every `(input, output)` cell that the three-lab API substrate
-can reach is routable through the harness.
+1j closes the `(text, video)` cell. Asset-conditioned video-out
+(`image|audio|video → video`) is its sibling — see Module 1l, which
+reuses 1j's async state machine and adds image conditioning on Sora
+and Veo (Path A) plus parser-translates-asset for non-image inputs
+(Path B).
 
 ## What's new vs Module 1i
 
@@ -147,9 +151,10 @@ comparison table.
 
 ## Limitations (deliberate, deferred)
 
-- **No image-to-video.** Sora and Veo both support image input as a
-  conditioning signal. Out of scope here — would require image-input
-  parsing on the composer side and another adapter shape.
+- **No image-to-video / asset-conditioned video.** Module 1l covers
+  it — image conditioning via Sora `input_reference=` and Veo `image=`,
+  plus parser-translates-asset for audio/video inputs. 1l reuses this
+  module's async state machine.
 - **No job cancellation on timeout.** Charged-but-uncollected jobs are
   documented as a pitfall but not fixed. A production version would
   call the lab's cancel endpoint on timeout and attribute the partial
@@ -169,26 +174,28 @@ comparison table.
 
 ## What this completes
 
-After 1j the input × output modality matrix is closed at 16 cells:
+After 1j the **text-input column** of the modality matrix is fully
+covered. Asset-input columns to image and video close in 1k and 1l
+respectively. The full grid after 1l:
 
 ```
                        OUTPUT
               text   audio   image   video
             ┌────────────────────────────────┐
-text        │  ✅    ✅      ✅      ✅      │
-INPUT image │  ✅    ✅      ✅      ✅      │
-      audio │  ✅    ✅      ✅      ✅      │
-      video │  ✅    ✅      ✅      ✅      │
+text        │  1c    1h      1i      1j      │
+INPUT image │  1h    1h      1k      1l      │
+      audio │  1h    1h      1k      1l      │
+      video │  1h    1h      1k      1l      │
             └────────────────────────────────┘
 ```
 
-What the curriculum has now demonstrated end-to-end:
+What the curriculum has demonstrated end-to-end through 1j:
 - Any input modality can feed a parser stage.
 - Any output modality can be served by a capability-filtered composer.
 - Cross-lab composition works wherever capability allows.
 - Async generation is a first-class harness primitive.
 - Refusal is a typed outcome, not an exception.
 
-The modality plane is solved. The cognitive plane — faculty-tagged
-evals (Module 4), telemetry sink (Module 5), rule-based router
-(L2.1), LIMBIC v0 (L3.1) — is the next frontier.
+After 1l the modality plane is solved. The cognitive plane —
+faculty-tagged evals (Module 4), telemetry sink (Module 5),
+rule-based router (L2.1), LIMBIC v0 (L3.1) — is the next frontier.
