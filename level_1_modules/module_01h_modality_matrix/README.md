@@ -119,16 +119,18 @@ halves close in 1i (text→image), 1j (text→video), 1k
 remaining work toward LIMBIC v0 is then on the **axes orthogonal to
 modality**:
 
-- **Module 4 — faculty-tagged evals.** Replace anecdotes with measured
-  performance per (perception, intellect, expression) faculty.
-- **Module 5 — telemetry sink.** Persist every call's request, response,
-  and timing for offline analysis. The data the policy will eventually
-  fit on.
-- **Module L2.1 — rule-based router.** Static decision tree consulting
-  the capability matrices and Goldilocks heuristics from the README.
-- **Module L3.1 — LIMBIC v0.** Faculty classifier + cost-aware
+- **Deeper Territory 6 — evaluation frameworks.** Replace anecdotes
+  with measured performance per (perception, intellect, expression)
+  faculty.
+- **Module 11 — observability / traces.** Persist every call's request,
+  response, and timing for offline analysis. The data the policy will
+  eventually fit on.
+- **LIMBIC L2.1 (forward-design) — rule-based router.** Static decision
+  tree consulting the capability matrices and Goldilocks heuristics
+  from the README. See [`docs/limbic-design.md`](../../docs/limbic-design.md).
+- **LIMBIC v0 (L3.1, forward-design).** Faculty classifier + cost-aware
   bilateral router on top of the rule-based foundation, learning
-  per-cell Goldilocks zones from Module-4/5 data.
+  per-cell Goldilocks zones from the eval + telemetry data.
 
 After 1l the modality plane is solved. The cognitive plane is the
 next frontier.

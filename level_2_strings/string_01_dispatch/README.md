@@ -162,12 +162,13 @@ sudo systemctl reload nginx
 
 ## What this enables next
 
-- **Module 4 (faculty-tagged evals)** can fan out evaluation calls
-  through `/api/dispatch` instead of needing its own per-module
+- **Module 2 (the conversation loop)** layers persistent threads on top
+  of this single-turn dispatcher — the next curriculum module after the
+  Module 1 extension closes.
+- **Deeper Territory 6 (evaluation frameworks)** can fan out evaluation
+  calls through `/api/dispatch` instead of needing its own per-module
   invocation logic.
-- **Module 5 (telemetry sink)** persists every `/api/dispatch` request
-  + response to `s3://harness-eng/traces/`, paired by run id.
-- **Module L2.2** (chat with memory) layers persistent threads on top
-  of this single-turn dispatcher.
+- **Module 11 (observability / traces)** persists every `/api/dispatch`
+  request + response to `s3://harness-eng/traces/`, paired by run id.
 - **Jupyter or other UX layers** can mount under nginx alongside this
   one (e.g., `location /jupyter/` block).

@@ -8,7 +8,7 @@
 
 **Framing:** This is muscle-building, not credential-building. The path is naive on purpose — the goal is to develop intuitions that survive when the framework changes. Every pattern is exercised through a use case small enough to fit in a few hundred lines of code, large enough to demonstrate the pattern's actual properties.
 
-**Tooling assumed:** Python. A capable LLM API key (Anthropic, OpenAI, or local via Ollama). A text editor. SQLite for state persistence. That is the entire stack. No managed services, no production infrastructure, no orchestration platform.
+**Tooling assumed:** Python and a capable LLM API key are the only hard requirements. A text editor and SQLite cover most modules' state needs. Beyond that, **tooling is appropriate-not-prescribed**: pick the labs and surfaces that fit the lesson at hand. Some modules (notably the Module 1 extension in this project) reach for multiple labs (Anthropic + OpenAI + Google), object storage (S3), async-job APIs (Sora, Veo), or a small web surface (FastAPI + Gradio + nginx) when those are what the lesson actually exercises. The principle: tooling earns its place when the *lesson* needs it, not when convention suggests it. No managed agent frameworks (LangChain, LangGraph) until Movement Three.
 
 **Companion docs:**
 

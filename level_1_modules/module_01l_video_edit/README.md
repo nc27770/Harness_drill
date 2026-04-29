@@ -142,8 +142,9 @@ Stdout: `s3://` URI of rendered video. Stderr: parser IR with a
    what does this say about how multimodal intake has consolidated
    across labs?
 5. **Where the curriculum is after 1l.** The matrix is closed at all
-   16 cells. What does L2.2 (chat with memory) add on top of the now-
-   complete dispatcher, and what is it deliberately *not* solving?
+   16 cells. What does Module 2 (the conversation loop) add on top of
+   the now-complete dispatcher, and what is it deliberately *not*
+   solving?
 
 ## Pitfalls deliberately within reach
 
@@ -186,7 +187,7 @@ Stdout: `s3://` URI of rendered video. Stderr: parser IR with a
 `level_2_strings/string_01_dispatch/dispatch.py` already routes
 `(image|audio|video, video)` through this module. With 1k and 1l in
 place, **the 4 × 4 modality matrix has no deferrals — every cell has
-a home**. The cognitive plane (Module 4 evals, Module 5 telemetry,
-LIMBIC L3.1 routing) is the next frontier; Module L2.2 (chat with
-memory) layers persistent threads on top of the now-complete
-dispatcher.
+a home**. The cognitive plane (Deeper Territory 6 evaluation
+frameworks, Module 11 observability, LIMBIC L3.1 routing) is the next
+frontier; Module 2 (the conversation loop) layers persistent threads on
+top of the now-complete dispatcher.

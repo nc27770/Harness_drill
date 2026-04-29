@@ -153,5 +153,6 @@ Module 1k generalizes 1i to asset-conditioned image-out — image-edit
 (Path A) plus audio/video → image translation (Path B). After 1k and
 1l, the input × output modality matrix is closed at 16 cells and the
 curriculum's modality plane is solved. The cognitive plane —
-faculty-tagged evals (Module 4), telemetry (Module 5), and LIMBIC v0
-(Module L3.1) — is the next frontier.
+evaluation frameworks (Deeper Territory 6), telemetry / observability
+(Module 11), and LIMBIC v0 (Module L3.1, forward-designed) — is the
+next frontier.

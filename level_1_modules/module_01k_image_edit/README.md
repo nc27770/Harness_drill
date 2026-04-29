@@ -169,5 +169,5 @@ comparison table.
 `level_2_strings/string_01_dispatch/dispatch.py` already routes
 `(image|audio|video, image)` through this module. With 1k and 1l in
 place, the 4×4 modality matrix has no deferrals — every cell has a
-home. Module L2.2 (chat with memory) layers persistent threads on top
-of the now-complete dispatcher.
+home. Module 2 (the conversation loop) layers persistent threads on
+top of the now-complete dispatcher.

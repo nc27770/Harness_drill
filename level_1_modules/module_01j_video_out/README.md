@@ -168,7 +168,7 @@ comparison table.
 - **No persistent job log.** If the harness process dies during a poll,
   the job id is lost (the lab still completes and bills). Fix: write
   the job id to a local journal before polling, reconcile on restart.
-  Pattern stabilizes when Module 5 (telemetry sink) lands.
+  Pattern stabilizes when Module 11 (observability / traces) lands.
 - **`common/async_job.py` not yet extracted.** The poll-and-terminal
   state machine lives inside `bilateral_j.py`. When a second module
   needs it (large-batch image gen, multi-turn agent loops), the
@@ -199,5 +199,6 @@ What the curriculum has demonstrated end-to-end through 1j:
 - Refusal is a typed outcome, not an exception.
 
 After 1l the modality plane is solved. The cognitive plane —
-faculty-tagged evals (Module 4), telemetry sink (Module 5),
-rule-based router (L2.1), LIMBIC v0 (L3.1) — is the next frontier.
+evaluation frameworks (Deeper Territory 6), telemetry / observability
+(Module 11), rule-based router (LIMBIC L2.1, forward-design),
+LIMBIC v0 (L3.1) — is the next frontier.

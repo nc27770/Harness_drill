@@ -63,6 +63,8 @@ python level_1_modules/module_01_bare_call/bare_call.py "your question"
 | 1k | [`module_01k_image_edit`](level_1_modules/module_01k_image_edit/) | Asset-conditioned image **output**. Closes `(image, image)` (true edit via `images.edit` / Gemini in-context edit) plus `(audio, image)` and `(video, image)` (parser translates asset to image brief). Two-path dispatch — edit when you can, translate when you must. |
 | 1l | [`module_01l_video_edit`](level_1_modules/module_01l_video_edit/) | Asset-conditioned video **output**. Closes `(image, video)` (image conditioning via Sora `input_reference` / Veo `image=`) plus `(audio, video)` and `(video, video)` (parser translates asset to video brief). Reuses 1j's async state machine. Closes the matrix at all 16 cells with no deferrals. |
 
+**Up next: Module 2 — The Conversation Loop.** See [`docs/curriculum.md`](docs/curriculum.md#module-2--the-conversation-loop) for the full 15-module path and the status table.
+
 Subsequent modules are built on demand, in order.
 
 ## Routing intuitions — when to modulate, when not to
@@ -124,8 +126,8 @@ Each faculty has its own (modality × tier) Goldilocks zone:
   output where pacing and word choice matter).
 
 LIMBIC's per-call routing decomposes into three orthogonal Goldilocks
-lookups against this triad. Module 4 (faculty-tagged evals) is what
-turns the lookups from heuristic to data-driven.
+lookups against this triad. Deeper Territory 6 (evaluation frameworks) is
+what turns the lookups from heuristic to data-driven.
 
 ## Coverage map (modality × routing space)
 
@@ -157,8 +159,9 @@ All 16 cells are now covered with no deferrals.
 ```
 
 After 1l the modality plane is solved. The remaining LIMBIC work is on
-axes orthogonal to modality: faculty-tagged evals (Module 4), telemetry
-(Module 5), rule-based router (L2.1), LIMBIC v0 (L3.1).
+axes orthogonal to modality: evaluation frameworks (Deeper Territory 6),
+telemetry/observability (Module 11), rule-based router (LIMBIC L2.1
+forward-design), LIMBIC v0 (L3.1).
 
 See `docs/limbic-design.md` for the full LIMBIC sketch and
 `docs/limbic-image-video-generative.md` for the design grounding behind
