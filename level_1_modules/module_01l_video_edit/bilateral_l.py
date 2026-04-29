@@ -455,6 +455,24 @@ def _call_composer_openai(prompt: str, *,
     }
     if conditioning_image is not None:
         img_bytes, mime = conditioning_image
+        # Sora requires input_reference dimensions to exactly match the
+        # requested video size (it treats it as an inpaint base, not a
+        # generic visual reference). Resize defensively — warps aspect
+        # ratio when source != target shape; callers wanting aspect
+        # preservation should letterbox before submitting.
+        target_w, target_h = (int(x) for x in size.split("x"))
+        from PIL import Image as _PILImage
+        src = _PILImage.open(io.BytesIO(img_bytes))
+        if src.size != (target_w, target_h):
+            print(f"[resized conditioning image: {src.size} → "
+                  f"({target_w}, {target_h})]", file=sys.stderr)
+            src = src.convert("RGB").resize(
+                (target_w, target_h), _PILImage.LANCZOS,
+            )
+            buf = io.BytesIO()
+            src.save(buf, format="PNG")
+            img_bytes = buf.getvalue()
+            mime = "image/png"
         ext = (mime or "image/png").rsplit("/", 1)[-1]
         if ext == "jpeg":
             ext = "jpg"
