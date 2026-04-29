@@ -4,6 +4,13 @@ A from-first-principles curriculum in harness engineering for agentic systems.
 Build every pattern by hand before adopting frameworks. The repo is the artifact
 of the journey — modules in order, each with reference code and notes.
 
+## Foundations — read these first
+
+| Doc | Purpose |
+|---|---|
+| [`docs/treatise.md`](docs/treatise.md) | The conceptual map — eight parts, from "why understanding the bare model call is non-negotiable" through state, modality, planes, frameworks, and the two-axis (modality × cognition) view of the curriculum. Read this to know *why* the modules are in the order they are. |
+| [`docs/curriculum.md`](docs/curriculum.md) | The 15-module path — what every module teaches, the new lesson at each seam, the three-layer code organization (modules / strings / agents), the eight deeper territories (multi-modal seams, MCP, etc.), and a status table for what's built vs. on deck. Read this to know *what's next*. |
+
 ## Layout
 
 ```
@@ -162,6 +169,9 @@ the other side of the wire).
 
 | Doc | Purpose |
 |---|---|
+| [`docs/treatise.md`](docs/treatise.md) | Conceptual map of the curriculum — eight parts. Read first to understand *why* the modules are ordered this way. |
+| [`docs/curriculum.md`](docs/curriculum.md) | The 15-module path, three-layer code organization, deeper territories, and the build status table. |
 | [`docs/limbic-design.md`](docs/limbic-design.md) | Future-project sketch — multi-axis dynamic router (direction × faculty × modality × cost). Module 1b is the prototype of its bilateral axis. |
 | [`docs/measurement-seam.md`](docs/measurement-seam.md) | Philosophical lens — frozen-weight LLM inference as a quantum-mechanical measurement act. The structural fact that makes the harness/researcher/inference role split inevitable. |
 | [`docs/limbic-image-video-generative.md`](docs/limbic-image-video-generative.md) | Design grounding for 1i and 1j — why generative image/video output is a different operator family, why control flow goes async, and why cost units shift from micro-cents to dollars per clip. |
+| [`docs/seam-parameters.md`](docs/seam-parameters.md) | Architectural lock — seam parameters (temperature, seed, voice, CFG, reasoning_effort, …) are dispatcher growth, not new curriculum modules. |

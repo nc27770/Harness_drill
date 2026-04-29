@@ -1,5 +1,7 @@
 # Level-2 String 01 — Dispatch
 
+> **Curriculum:** **Layer 2** — composition of the Module 1 (extension) CLIs into a single user-facing surface. The first Layer-2 string. See [`docs/curriculum.md#code-organization--three-layers`](../../docs/curriculum.md#code-organization--three-layers).
+
 A cover application that routes any `(input modality × output modality
 × parser × composer)` request to the right level-1 module. First
 `level_2_strings/` artifact — composes existing modules, doesn't teach

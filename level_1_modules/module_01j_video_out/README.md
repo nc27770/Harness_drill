@@ -1,5 +1,7 @@
 # Module 1j — Video OUTPUT (async)
 
+> **Curriculum:** Module 1 extension — first async control flow (submit/poll/terminal); refusal becomes a typed outcome. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/limbic-image-video-generative.md`](../../docs/limbic-image-video-generative.md) §1.3.
+
 **Goal:** prove the bilateral split holds under **async** generation,
 introduce the async-job state machine as a first-class harness primitive,
 and close the `(text, video)` cell. See

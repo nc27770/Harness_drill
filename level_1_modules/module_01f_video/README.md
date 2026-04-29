@@ -1,5 +1,7 @@
 # Module 1f — Bilateral with Video Input
 
+> **Curriculum:** Module 1 extension — single-provider modality (video: Google only). Modality forces parser; composer choice stays free. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part III.
+
 **Goal:** internalize what changes when an input modality is *exclusive*
 to one provider. Audio (Module 1e) was *restricted* — only 2 of 3 labs.
 Video tightens to 1 of 3: only Google's Gemini natively accepts video in

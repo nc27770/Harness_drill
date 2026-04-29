@@ -1,5 +1,7 @@
 # Module 1l — Asset-conditioned video OUTPUT (async)
 
+> **Curriculum:** Module 1 extension — closes the asset-input video-out diagonal (image-conditioned async + audio/video → video translation). Closes the matrix at all 16 cells. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension).
+
 **Goal:** close the last three uncovered cells of the modality matrix
 — `(image, video)`, `(audio, video)`, `(video, video)` — with one
 module that holds two distinct internal paths. After 1l, the matrix

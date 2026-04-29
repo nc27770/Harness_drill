@@ -1,5 +1,7 @@
 # Module 1k — Asset-conditioned image OUTPUT
 
+> **Curriculum:** Module 1 extension — closes the asset-input image-out diagonal (image-edit + audio/video → image translation). Two internal paths. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension).
+
 **Goal:** close three cells the dispatcher previously refused —
 `(image, image)`, `(audio, image)`, `(video, image)` — with one module
 that holds two distinct internal paths. The lesson is **edit when you

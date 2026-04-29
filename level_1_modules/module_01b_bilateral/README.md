@@ -1,5 +1,7 @@
 # Module 1b — The Bilateral Split
 
+> **Curriculum:** Module 1 extension — first place the bare call splits into parser + composer (one provider, two tiers). See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part II.
+
 **Goal:** internalize what changes when you split *understanding the input*
 from *composing the output*. Module 1 collapsed both into one model call.
 Module 1b separates them and lets you assign different models (different

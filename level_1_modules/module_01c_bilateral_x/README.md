@@ -1,5 +1,7 @@
 # Module 1c — Bilateral, Cross-Provider
 
+> **Curriculum:** Module 1 extension — bilateral seam crosses provider boundaries (Anthropic / OpenAI / Google). First place adapter cost and lab-shape divergence become load-bearing. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part II.
+
 **Goal:** internalize what changes when the bilateral seam crosses provider
 boundaries. Module 1b proved the seam works within Anthropic's two tiers.
 Module 1c lets parser and composer be drawn from any of three labs, in any

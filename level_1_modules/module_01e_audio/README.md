@@ -1,5 +1,7 @@
 # Module 1e — Bilateral with Audio Input
 
+> **Curriculum:** Module 1 extension — first *restricted* modality (audio: OpenAI + Google only). Capability matrix becomes explicit. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part III.
+
 **Goal:** internalize what changes when one of the modalities you want to
 route is *not universally available*. Image input was a soft constraint
 (every slot could do it; the question was cost). Audio is a hard

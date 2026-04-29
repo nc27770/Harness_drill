@@ -1,5 +1,7 @@
 # Module 1i — Image OUTPUT
 
+> **Curriculum:** Module 1 extension — first place the composer is a diffusion-transformer (gpt-image-1, Gemini image). IR becomes modality-shaped; cost arithmetic inverts. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/limbic-image-video-generative.md`](../../docs/limbic-image-video-generative.md) §1.1.
+
 **Goal:** prove the bilateral split holds when the composer's output
 modality is image, define the **image-shaped IR**, and feel the cost
 arithmetic invert. First module where the composer is *not* an

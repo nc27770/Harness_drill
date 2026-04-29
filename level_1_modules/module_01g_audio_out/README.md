@@ -1,5 +1,7 @@
 # Module 1g — Bilateral with Audio OUTPUT
 
+> **Curriculum:** Module 1 extension — first *output*-side modality routing (audio out: OpenAI only). Capability matrix splits into input + output halves. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part III.
+
 **Goal:** internalize what changes when a *modality constraint applies to
 the output side* of the bilateral split. Modules 1d–1f routed input
 modality (image, audio, video). Module 1g routes the **composer's output

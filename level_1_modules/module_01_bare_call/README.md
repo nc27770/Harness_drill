@@ -1,5 +1,7 @@
 # Module 1 — The Bare Model Call
 
+> **Curriculum:** Movement One, Module 1 — *The Bare Model Call*. The canonical bare-call module — one round trip, no abstraction, no state. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) and [`docs/treatise.md`](../../docs/treatise.md) Part I.
+
 **Goal:** internalize what a single model invocation actually is. No
 abstraction. No state. No tools. Just one round trip with prompt → text.
 

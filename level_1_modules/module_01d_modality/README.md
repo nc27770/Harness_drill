@@ -1,5 +1,7 @@
 # Module 1d — Bilateral with Modality
 
+> **Curriculum:** Module 1 extension — first non-text input modality (image). The seam stops being optional once modality enters. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension) and [`docs/treatise.md`](../../docs/treatise.md) Part III.
+
 **Goal:** internalize what changes when the bilateral split has to handle a
 non-text modality. Module 1c made the seam cross provider boundaries; Module
 1d makes it cross *modality* boundaries — and at that point the seam stops

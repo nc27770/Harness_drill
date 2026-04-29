@@ -1,5 +1,7 @@
 # Module 1h — Closing the Modality Matrix
 
+> **Curriculum:** Module 1 extension — closes the text/audio output halves of the (input × output) modality matrix in one consolidated module. See [`docs/curriculum.md`](../../docs/curriculum.md#module-1--the-bare-model-call) (Module 1 extension).
+
 **Goal:** complete the input/output modality coverage **for text and
 audio outputs** in a single consolidated module. Modules 1d–1g
 instrumented 5 of 8 text/audio-output cells; 1h closes the remaining
