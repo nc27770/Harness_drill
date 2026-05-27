@@ -76,18 +76,19 @@ Time budget is intentionally not specified. Some modules will take an evening; s
 
 | Module | Title | Status | Path |
 |---|---|---|---|
-| 1 | The Bare Model Call | ✅ done | `level_1_modules/module_01_bare_call/` |
-| 1 (extension) | Modality matrix + asset-conditioning | ✅ done | `level_1_modules/module_01b_*` … `module_01l_*` |
+| 1 | The Bare Model Call | ✅ done | `level_1_modules/module_01/module_01_bare_call/` |
+| 1 (extension) | Modality matrix + asset-conditioning | ✅ done | `level_1_modules/module_01/module_01b_*` … `module_01l_*` |
 | L2 (extension) | Dispatcher (cover app over Module 1) | ✅ done | `level_2_strings/string_01_dispatch/` |
-| 2 | The Conversation Loop | ⏳ next | — |
-| 3 | The Three-Phase Loop, By Hand | ⏳ pending | — |
-| 4 | Native Tool Calling | ⏳ pending | — |
-| 5 | The Naive Agent Class | ⏳ pending | — |
+| 2 | The Conversation Loop | ✅ done | `level_1_modules/module_02_conversation/` |
+| 3 | The Three-Phase Loop, By Hand | ✅ done | `level_1_modules/module_03_three_phase/` |
+| 4 | Native Tool Calling | ✅ done | `level_1_modules/module_04_native_tools/` |
+| 5 | The Naive Agent Class | ✅ done | `level_1_modules/module_05_agent/` |
+| L2 (extension) | Witness — Mind & Machine log over M2–M5 | ✅ done | `level_2_strings/string_02_witness/` |
 | 6 | RAG From Scratch | ⏳ pending | — |
 | 7 | Memory: Working / Episodic / Session / Long-Term | ⏳ pending | — |
 | 8 | Multi-Agent: Supervisor Pattern | ⏳ pending | — |
 | 9 | Multi-Agent: Pipeline / Swarm / Debate | ⏳ pending | — |
-| 10 | Persistence and Resumption | ⏳ pending | — |
+| 10 | Persistence and Resumption | ✅ done (built early, as **M5 ⊕ M10** — the durable Mind) | `level_1_modules/module_10_persistence/` |
 | 11 | Observability: Traces and Telemetry | ⏳ pending | — |
 | 12 | LangGraph: First Encounter | ⏳ pending | — |
 | 13 | LangGraph: Multi-Agent and Persistence | ⏳ pending | — |
@@ -97,6 +98,8 @@ Time budget is intentionally not specified. Some modules will take an evening; s
 **A note on the Module 1 extension:** the curriculum's stated Module 1 is a single `bare_call.py`. We have gone substantially deeper before moving on — covering the bilateral split (1b), three-lab cross-coverage (1c), modality input across image / audio / video (1d–1f), audio output (1g), the modality matrix (1h), image and video output (1i / 1j), and asset-conditioned image and video output (1k / 1l). The dispatcher in `level_2_strings/string_01_dispatch/` strings these into a single user-facing surface.
 
 This expansion is project-specific elaboration of Module 1's territory — *the seam*, the boundary between the world inside the model and the world outside. Per [`measurement-seam.md`](measurement-seam.md), this is the only inference gate; everything from Module 2 onward is scaffolding upstream or downstream of it. Closing the seam thoroughly across modalities and labs before moving to scaffolding is consistent with the curriculum's "build from first principles" ethos and is the foundation later modules will rest on.
+
+**A note on Movement One (M2–M5) and the early Module 10.** M2–M5 are built as self-contained CLI kernels (the diff between each is the lesson) and are *animated* by the Witness — a Layer-2 string (`string_02_witness/`) that spans them, serializing a per-thread **Mind & Machine log** to `traces/`. Module 10 was built ahead of order, **fused with Module 5's declarative agent**, because the user wanted the canonical agent born *durable* — a `(config, state)` Mind that outlasts its process — rather than retrofitting persistence later. Its data contract is frozen in [`module_10_persistence/SCHEMA.md`](../level_1_modules/module_10_persistence/SCHEMA.md). M5 is the *naive in-process* agent; M10 is the *mature durable* Mind — the contrast is itself a lesson. Modules 6–9 and 11–15 remain pending.
 
 ---
 

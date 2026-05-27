@@ -10,3 +10,6 @@ __pycache__/
 *.db
 *.sqlite
 traces/
+
+# Gradio cache / flagged data
+.gradio/
