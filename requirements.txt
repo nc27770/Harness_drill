@@ -1,0 +1,5 @@
+anthropic
+python-dotenv
+openai               # module 1c — cross-provider bilateral
+google-generativeai  # module 1c — cross-provider bilateral
+boto3                # module 1d — S3-backed asset fetch

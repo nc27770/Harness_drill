@@ -1,0 +1,15 @@
+# Secrets — never commit
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Module-generated state
+*.db
+*.sqlite
+traces/
+
+# Gradio cache / flagged data
+.gradio/
